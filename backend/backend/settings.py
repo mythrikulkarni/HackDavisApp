@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework'
 
     # Local
-    'user',
+    'api',
 
     # Third Party Packages
     'corsheaders',
