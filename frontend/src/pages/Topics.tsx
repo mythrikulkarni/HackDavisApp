@@ -65,7 +65,7 @@ function Topics(props: {user_id: number, transitionPage: (screenId: number, user
     return (
             <div
     className="SignUp container"
-    style={{ width: 390, height: 844, position: "relative", background: "white" }}
+    style={{ width: 390, height: 212 + (categories.length * 44), position: "relative", background: "#FAF9F6" }}
     >
     <div
         className="WelcomeToBuzzIn"
@@ -73,7 +73,7 @@ function Topics(props: {user_id: number, transitionPage: (screenId: number, user
         left: 30,
         top: 60,
         position: "absolute",
-        color: "black",
+        color: "#1A1A1A",
         fontSize: 24,
         fontFamily: "Inter",
         fontWeight: 700,
@@ -88,7 +88,7 @@ function Topics(props: {user_id: number, transitionPage: (screenId: number, user
         left: 30,
         top: 94,
         position: "absolute",
-        color: "black",
+        color: "#4E4E4E",
         fontSize: 14,
         fontFamily: "Inter",
         fontWeight: 400,
@@ -116,7 +116,8 @@ function Topics(props: {user_id: number, transitionPage: (screenId: number, user
                             top: 151 + (index * 44),
                             position: "absolute",
                             borderRadius: 5,
-                            border: "1px black solid"
+                            border: "1px black solid",
+                            cursor:"pointer",
                         }}
                     />
                     <div
@@ -153,7 +154,7 @@ function Topics(props: {user_id: number, transitionPage: (screenId: number, user
         left: 30,
         top: 162 + (categories.length * 44),
         position: "absolute",
-        background: "#E4E4E4",
+        background: "#E2B11D",
         borderRadius: 10,
         overflow: "hidden",
         border: "1px solid",
