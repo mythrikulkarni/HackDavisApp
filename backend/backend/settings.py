@@ -141,3 +141,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Custom Variables
+
+PROPEL_AUTH_KEY = "379a7affdca74677ec21c25a841e7a2a558efdb47752c2b7e15093152a4e4eeaf88d9507acc08a6f1cae70766b6de023"
