@@ -18,7 +18,7 @@ function TuteeAsk(props: {setScreenId: (screenId: number) => void, access_token:
     }
     return (
             <div
-    className="TuteeHomePage "
+    className="menteeHomePage "
     style={{ width: 390, height: 844, position: "relative", background: "white" }}
     >
     <NavBar/>
@@ -35,7 +35,7 @@ function TuteeAsk(props: {setScreenId: (screenId: number) => void, access_token:
         }}
     >
         <div
-        className="Tutee"
+        className="mentee"
         style={{
             color: "black",
             fontSize: 24,
@@ -44,7 +44,7 @@ function TuteeAsk(props: {setScreenId: (screenId: number) => void, access_token:
             wordWrap: "break-word",
         }}
         >
-        Tutee
+        Mentee
         </div>
         <div
         className="Group58"
@@ -168,4 +168,4 @@ function TuteeAsk(props: {setScreenId: (screenId: number) => void, access_token:
     )
 }
 
-export default TuteeAsk
+export default TuteeAsk;

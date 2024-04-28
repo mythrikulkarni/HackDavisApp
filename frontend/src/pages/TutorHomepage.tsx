@@ -11,8 +11,8 @@ function TutorHomepage(props: {setScreenId: (screenId: number) => void}) {
         }
     }, [])
     return (
-<div className="TutorHomePage container" style={{width: 390, height: 844, position: 'relative', background: 'white'}}>
-  <div className="Tutor" style={{left: 30, top: 60, position: 'absolute', color: 'black', fontSize: 24, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>Tutor</div>
+<div className="mentorHomePage container" style={{width: 390, height: 844, position: 'relative', background: 'white'}}>
+  <div className="mentor" style={{left: 30, top: 60, position: 'absolute', color: 'black', fontSize: 24, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>Mentor</div>
   <div className="Frame120" style={{width: 330, height: 184, left: 30, top: 142, position: 'absolute', background: 'rgba(94, 128, 81, 0.20)', borderRadius: 10, overflow: 'hidden'}}>
     <div className="Academics" style={{left: 14, top: 14, position: 'absolute', color: '#151515', fontSize: 12, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Academics</div>
     <div className="WhatMethodologiesAndToolsCanBeEmployedToAddressTheChallengesOfIntegratingDiverseDataSourcesIncludingStructuredAndUnstructuredDataInInterdisciplinaryResearchProjectsAimedAtUnderstandingComplexPhenomenaSuchAsClimateChangeOrUrbanization" style={{width: 300, left: 14, top: 37, position: 'absolute', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word'}}>What methodologies and tools can be employed to address the challenges of integrating diverse data sources, including structured and unstructured data, in interdisciplinary research projects aimed at understanding complex phenomena?</div>
@@ -25,10 +25,10 @@ function TutorHomepage(props: {setScreenId: (screenId: number) => void}) {
     <div className="Health" style={{left: 14, top: 14, position: 'absolute', color: '#151515', fontSize: 12, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Health</div>
     <div className="HowCanWeBestPersonalizeMedicalTreatmentsOnALargeScaleConsideringChallengesLikeDataSharingPatientPrivacyRegulationsAndFairAccess" style={{width: 300, left: 14, top: 37, position: 'absolute', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word'}}>How can we best personalize medical treatments on a large scale, considering challenges like data sharing, patient privacy, regulations, and fair access?</div>
   </div>
-  <div className="Frame130" style={{width: 64, height: 29, left: 103, top: 60, position: 'absolute', borderRadius: 20, border: '1px #C2C2C2 solid'}}
+  <div className="Frame130" style={{width: 64, height: 29, left: 110, top: 65, position: 'absolute', borderRadius: 20, border: '1px #C2C2C2 solid'}}
     onClick={() => props.setScreenId(1)} />
-  <div className="Ellipse19" style={{width: 19, height: 19, left: 108, top: 65, position: 'absolute', background: '#3679DF', borderRadius: 9999}} />
-  <div className="Ellipse20" style={{width: 19, height: 19, left: 143, top: 65, position: 'absolute', borderRadius: 9999, border: '1px #C2C2C2 solid'}} />
+  <div className="Ellipse19" style={{width: 19, height: 19, left: 115, top: 70, position: 'absolute', background: '#3679DF', borderRadius: 9999}} />
+  <div className="Ellipse20" style={{width: 19, height: 19, left: 150, top: 70, position: 'absolute', borderRadius: 9999, border: '1px #C2C2C2 solid'}} />
   <div className="BotNav" style={{width: 390, height: 90, left: 0, top: 754, position: 'absolute', background: '#EAEAEA'}}>
     <div className="HomeIndicator" style={{width: 390, height: 20, left: 0, top: 70, position: 'absolute'}}>
     </div>
