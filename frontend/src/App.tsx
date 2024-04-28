@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import Login from './pages/login';
+import SignUp from './pages/SignUp';
 
 import "bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -8,20 +9,21 @@ import './App.css';
 
 function App() {
   return (
-    <div className="mt-5 px-3 py-4">
-      <h1 className="h1 display-1">Counter Component</h1>
-      <h2 className="h1 display-1 mt-5 mb-3">0</h2>
-      <div className="mt-5">
-        <button
-          className="btn btn-primary btn-lg mx-3 px-5 py-3 mt-2">
-          Add
-        </button>
-        <button
-          className="btn btn-dark btn-lg mx-3 px-5 py-3 mt-2" >
-          Remove
-        </button>
-      </div>
-    </div>
+    <SignUp/>
+    // <div className="mt-5 px-3 py-4">
+    //   <h1 className="h1 display-1">Counter Component</h1>
+    //   <h2 className="h1 display-1 mt-5 mb-3">0</h2>
+    //   <div className="mt-5">
+    //     <button
+    //       className="btn btn-primary btn-lg mx-3 px-5 py-3 mt-2">
+    //       Add
+    //     </button>
+    //     <button
+    //       className="btn btn-dark btn-lg mx-3 px-5 py-3 mt-2" >
+    //       Remove
+    //     </button>
+    //   </div>
+    // </div>
   )
   /*
   return (
