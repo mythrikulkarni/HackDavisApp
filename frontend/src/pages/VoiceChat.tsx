@@ -1,6 +1,20 @@
 import React from "react";
 
 function VoiceChat() {
+    const [isMuted, setIsMuted] = React.useState(false);
+
+    const toggleIsMuted = () => {
+      setIsMuted((prevIsMuted) => {
+        return !prevIsMuted;
+      })
+    }
+    const getBackgroundColor = (option: string) => {
+        if (isMuted) {
+            return "#cf0606";
+          } else {
+            return "#5C5C5C";
+          }
+      }
     return (
             <div
     className="VideoCall container"
@@ -244,6 +258,7 @@ function VoiceChat() {
         style={{ width: 49, height: 49, left: 60, top: 8, position: "absolute" }}
         >
         <div
+            onClick={() => {toggleIsMuted();}}
             className="Ellipse21"
             style={{
             width: 49,
@@ -251,8 +266,11 @@ function VoiceChat() {
             left: 0,
             top: 0,
             position: "absolute",
-            background: "#5C5C5C",
-            borderRadius: 9999,
+            //background: "#5C5C5C",
+            background: getBackgroundColor("isMuted"),
+            borderRadius: 99,
+            borderBlockWidth: 10,
+            borderColor: "white"
             }}
         />
         <div
