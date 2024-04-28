@@ -1,9 +1,64 @@
+import axios from 'axios';
 import React from 'react';
 
+interface IUserAuthStep1Post {
+    is_success: boolean,
+    message: string
+}
+
 function SignUp () {
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setlastName] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+
+    const formSetFirstName = (newFirstName: string) => {
+        setFirstName(newFirstName);
+    }
+
+    const formSetLastName = (newLastName: string) => {
+        setlastName(newLastName);
+    }
+
+    const formSetEmail = (newEmail: string) => {
+        setEmail(newEmail);
+    }
+
+    const formSetPassword = (newPassword: string) => {
+        setPassword(newPassword);
+    }
+
+    const formClearForm = () => {
+        setFirstName("");
+        setlastName("");
+        setEmail("");
+        setPassword("");
+    }
+
+    const formSubmit = () => {
+        console.log("First Name: " + firstName);
+        console.log("Last Name: " + lastName);
+        console.log("Email: " + email);
+        console.log("Password: " + password);
+        let formData = new FormData();
+        formData.append("step", "1");
+        formData.append("first_name", firstName);
+        formData.append("last_name", lastName);
+        formData.append("email", email);
+        formData.append("password", password);
+
+        axios.post("http://localhost:8000/api/user_auth/", formData).then((response) => {
+            let data = response.data as IUserAuthStep1Post;
+            formClearForm();
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        console.log("Submit");
+    }
+
     return (
-            <div
-    className="SignUp container"
+            <div className="SignUp container"
     style={{ width: 390, height: 844, position: "relative", background: "white" }}
     >
     <div
@@ -47,8 +102,10 @@ function SignUp () {
     >
         Buzz In
     </div>
-    <div
+    <input type="email"
         className="Frame91"
+        value={email}
+        onChange={(e) => {setEmail(e.target.value); }}
         style={{
         width: 330,
         height: 48,
@@ -59,7 +116,9 @@ function SignUp () {
         border: "1px black solid"
         }}
     />
-    <div
+    <input type="text"
+        value={firstName}
+        onChange={(e) => { setFirstName(e.target.value); }}
         className="Frame99"
         style={{
         width: 160,
@@ -71,8 +130,10 @@ function SignUp () {
         border: "1px black solid"
         }}
     />
-    <div
+    <input
         className="Frame100"
+        value={lastName}
+        onChange={(e) => {setlastName(e.target.value); }}
         style={{
         width: 160,
         height: 48,
@@ -85,6 +146,7 @@ function SignUp () {
     />
     <div
         className="Frame96"
+        onClick={() => {formSubmit();}}
         style={{
         width: 330,
         height: 47,
@@ -119,8 +181,10 @@ function SignUp () {
         Sign up
         </div>
     </div>
-    <div
+    <input type="password"
         className="Frame92"
+        value={password}
+        onChange={(e) => {setPassword(e.target.value); }}
         style={{
         width: 330,
         height: 48,

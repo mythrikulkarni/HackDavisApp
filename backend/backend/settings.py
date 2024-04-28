@@ -144,4 +144,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Custom Variables
 
-PROPEL_AUTH_KEY = "379a7affdca74677ec21c25a841e7a2a558efdb47752c2b7e15093152a4e4eeaf88d9507acc08a6f1cae70766b6de023"
+#PROPEL_AUTH_KEY = "379a7affdca74677ec21c25a841e7a2a558efdb47752c2b7e15093152a4e4eeaf88d9507acc08a6f1cae70766b6de023"
+#PROPEL_AUTH_URL = "https://69191733397.propelauthtest.com"
+
+PROPEL_AUTH_KEY = "31ac3a1e6c1fb0fba81cc464a5af81ae57fb955da3a444dbd631957f69ea5ffeeb15629ef849726ea96808a9ec4a3114"
+PROPEL_AUTH_URL = "https://40021587180.propelauthtest.com"
+
+from propelauth_py import init_base_auth
+PROPEL_AUTH = init_base_auth(PROPEL_AUTH_URL, PROPEL_AUTH_KEY)
+
