@@ -32,16 +32,16 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
   const getBackgroundColor = (option: string) => {
     if (option == "tutor") {
       if (isTutor) {
-        return "#35754f";
+        return "#F5CE57";
       } else {
-        return "#E4E4E4";
+        return "#F6E8BD";
       }
     } else {
       //Tutee
       if (isTutor) {
-        return "#E4E4E4";
+        return "#F6E8BD";
       } else {
-        return "#35754f";
+        return "#F5CE57";
       }
     }
   }
@@ -52,7 +52,7 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
         width: 390,
         height: 844,
         position: 'relative',
-        background: 'white'
+        background: "#FAF9F6"
       }}
     >
       <div
@@ -78,7 +78,7 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
           left: 30,
           top: 94,
           position: 'absolute',
-          color: 'black',
+          color: "#4E4E4E",
           fontSize: 14,
           fontFamily: 'Inter',
           fontWeight: '400',
@@ -101,7 +101,7 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
           left: 30,
           top: 747,
           position: 'absolute',
-          background: '#E4E4E4',
+          background: "#E2B11D",
           borderRadius: 10,
           overflow: 'hidden',
           border: '1px solid',
@@ -109,7 +109,8 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
           justifyContent: 'center',
           alignItems: 'center',
           gap: 10,
-          display: 'inline-flex'
+          display: 'inline-flex',
+          cursor:"pointer",
         }}
       >
         <div
@@ -118,7 +119,7 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
             color: 'black',
             fontSize: 14,
             fontFamily: 'Inter',
-            fontWeight: '500',
+            fontWeight: '600',
             wordWrap: 'break-word'
           }}
         >
@@ -145,11 +146,12 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
           justifyContent: 'flex-start',
           alignItems: 'center',
           display: 'inline-flex',
-          backgroundColor: getBackgroundColor("tutor")
+          backgroundColor: getBackgroundColor("tutor"),
+          cursor:"pointer",
         }}
       >
         <div
-          className="Tutor"
+          className="Mentor"
           style={{
             color: 'black',
             fontSize: 18,
@@ -158,7 +160,7 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
             wordWrap: 'break-word'
           }}
         >
-          Tutor
+          Mentor
         </div>
       </div>
 
@@ -181,12 +183,15 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
           justifyContent: 'flex-start',
           alignItems: 'center',
           display: 'inline-flex',
-          backgroundColor: getBackgroundColor("tutee")
+          backgroundColor: getBackgroundColor("tutee"),
+          cursor:"pointer",
         }}
       >
         <div
-          className="Tutee"
+          className="Mentee"
           style={{
+            left: 24,
+            top: 22,
             color: 'black',
             fontSize: 18,
             fontFamily: 'Inter',
@@ -194,7 +199,7 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
             wordWrap: 'break-word'
           }}
         >
-          Tutee
+          Mentee
         </div>
       </div>
     </div>

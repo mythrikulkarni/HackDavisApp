@@ -162,7 +162,8 @@ function Topics(props: {user_id: number, transitionPage: (screenId: number, user
         justifyContent: "center",
         alignItems: "center",
         gap: 10,
-        display: "inline-flex"
+        display: "inline-flex",
+        cursor: "pointer"
         }}
     >
         <div onClick={() => {submitForm();}}
@@ -172,7 +173,7 @@ function Topics(props: {user_id: number, transitionPage: (screenId: number, user
             fontSize: 14,
             fontFamily: "Inter",
             fontWeight: 500,
-            wordWrap: "break-word"
+            wordWrap: "break-word",
         }}
         >
         Next
