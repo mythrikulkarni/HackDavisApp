@@ -1,6 +1,11 @@
 import React from 'react';
 
-function TuteeWait() {
+function TuteeWait(props: {setScreenId: (screenId: number) => void}) {
+  React.useEffect(() => {
+    setTimeout(() => {
+      props.setScreenId(4);
+    }, 5000);
+  }, [])
   return (
 <div className="TuteeHomePage container" style={{width: 390, height: 844, position: 'relative', background: 'white'}}>
   <div className="BotNav" style={{width: 390, height: 90, left: 0, top: 754, position: 'absolute', background: '#EAEAEA'}}>
@@ -44,7 +49,8 @@ function TuteeWait() {
     <div className="Academics" style={{left: 14, top: 14, position: 'absolute', color: '#151515', fontSize: 12, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Academics</div>
     <div className="WhatMethodologiesAndToolsCanBeEmployedToAddressTheChallengesOfIntegratingDiverseDataSourcesIncludingStructuredAndUnstructuredDataInInterdisciplinaryResearchProjectsAimedAtUnderstandingComplexPhenomenaSuchAsClimateChangeOrUrbanization" style={{width: 303, left: 14, top: 37, justifyContent: 'center', alignItems: 'center', position: 'absolute', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word'}}>What methodologies and tools can be employed to address the challenges of integrating diverse data sources, including structured and unstructured data, in interdisciplinary research projects aimed at understanding complex phenomena such as climate change or urbanization?</div>
     <div className="Frame143" style={{paddingLeft: 10, paddingRight: 10, paddingTop: 4, paddingBottom: 4, left: 210, top: 195, position: 'absolute', background: 'white', borderRadius: 10, overflow: 'hidden', justifyContent: 'center', alignItems: 'center', gap: 5, display: 'inline-flex'}}>
-      <div className="DiscardPost" style={{color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word'}}>Discard Post</div>
+      <div className="DiscardPost" style={{color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word'}}
+        onClick={() => props.setScreenId(0)}>Discard Post</div>
     </div>
   </div>
   <div className="QuestionPosted" style={{left: 30, top: 129, position: 'absolute', color: 'black', fontSize: 18, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Question Posted</div>

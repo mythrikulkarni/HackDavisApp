@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from './NavBar';
 
-function TuteeTopics() {
+function TuteeTopics(props: {setScreenId: (screenId: number) => void}) {
 
     return (
             <div
@@ -22,8 +22,7 @@ function TuteeTopics() {
         wordWrap: "break-word",
         }}
     >
-        Choose Topic
-    banaN</div>
+        Choose Topic</div>
     <div
         className="Frame139"
         style={{
@@ -54,6 +53,7 @@ function TuteeTopics() {
         >
         <div
             className="Frame130"
+            onClick={() => props.setScreenId(0)}
             style={{
             width: 64,
             height: 29,
@@ -100,7 +100,8 @@ function TuteeTopics() {
         position: "absolute",
         }}
     >
-        <div
+        <input
+        type="checkbox"
         className="Frame100"
         style={{
             width: 24,
@@ -112,7 +113,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame101"
         style={{
             width: 24,
@@ -124,7 +126,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame102"
         style={{
             width: 24,
@@ -136,7 +139,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame103"
         style={{
             width: 24,
@@ -148,7 +152,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame104"
         style={{
             width: 24,
@@ -160,7 +165,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame105"
         style={{
             width: 24,
@@ -172,7 +178,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame106"
         style={{
             width: 24,
@@ -184,7 +191,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame107"
         style={{
             width: 24,
@@ -196,7 +204,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame108"
         style={{
             width: 24,
@@ -208,7 +217,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame109"
         style={{
             width: 24,
@@ -220,7 +230,8 @@ function TuteeTopics() {
             border: "1px black solid",
         }}
         />
-        <div
+        <input
+        type="checkbox"
         className="Frame110"
         style={{
             width: 24,
@@ -400,6 +411,7 @@ function TuteeTopics() {
     </div>
     <div
         className="Frame96"
+        onClick={() => props.setScreenId(3)}
         style={{
         width: 330,
         height: 47,

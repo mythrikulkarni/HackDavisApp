@@ -4,6 +4,8 @@ import TuteeAsk from "./TuteeAsk";
 import TuteeTopics from "./TuteeTopics";
 import TuteeWait from "./TuteeWait";
 import axios from "axios";
+import VoiceChat from "./VoiceChat";
+import TutorReview from "./TutorReview";
 
 function TutorTutee(props: {access_token: string}) {
     const [screenId, setScreenId] = React.useState(-1);
@@ -30,9 +32,13 @@ function TutorTutee(props: {access_token: string}) {
         return <TuteeAsk setScreenId={setScreenId} access_token={props.access_token}
             setQuestionId={setQuestionId} />
     } else if (screenId == 2) {
-        return <TuteeTopics />
+        return <TuteeTopics setScreenId={setScreenId} />
     } else if (screenId == 3) {
-        return <TuteeWait />
+        return <TuteeWait setScreenId={setScreenId} />
+    } else if (screenId == 4) {
+        return <VoiceChat setScreenId={setScreenId} />
+    } else if (screenId == 5) {
+        return <TutorReview setScreenId={setScreenId} />
     } else {
         return <div>Loading...</div>
     }

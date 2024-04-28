@@ -1,6 +1,6 @@
 import React from "react";
 
-function TutorReview() {
+function TutorReview(props: {setScreenId: (screenId: number) => void}) {
     return (
             <div
     className="TutorReview container"
@@ -13,6 +13,7 @@ function TutorReview() {
     >
     <div
         className="Frame96"
+        onClick={() => props.setScreenId(3)}
         style={{
         width: 330,
         height: 47,
@@ -49,6 +50,7 @@ function TutorReview() {
     </div>
     <div
         className="Frame145"
+        onClick={() => props.setScreenId(0)}
         style={{
         width: 330,
         height: 47,

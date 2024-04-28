@@ -1,6 +1,6 @@
 import React from "react";
 
-function VoiceChat() {
+function VoiceChat(props: {setScreenId: (screenId: number) => void}) {
     const [isMuted, setIsMuted] = React.useState(false);
 
     const toggleIsMuted = () => {
@@ -235,6 +235,7 @@ function VoiceChat() {
         />
         <div
             className="SolidCommunicationPhoneMiss"
+            onClick={() => props.setScreenId(5)}
             style={{ width: 32, height: 32, left: 9, top: 9, position: "absolute" }}
         >
         <div
