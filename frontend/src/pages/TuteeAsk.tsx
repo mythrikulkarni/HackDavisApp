@@ -1,212 +1,13 @@
 import React from 'react';
+import NavBar from './NavBar';
 
 function TuteeAsk() {
     return (
             <div
-    className="TuteeHomePage container"
+    className="TuteeHomePage "
     style={{ width: 390, height: 844, position: "relative", background: "white" }}
     >
-    <div
-        className="BotNav"
-        style={{
-        width: 390,
-        height: 90,
-        left: 0,
-        top: 754,
-        position: "absolute",
-        background: "#EAEAEA",
-        }}
-    >
-        <div
-        className="HomeIndicator"
-        style={{ width: 390, height: 20, left: 0, top: 70, position: "absolute" }}
-        >
-        <div
-            className="HomeIndicator"
-            style={{
-            width: 134,
-            height: 5,
-            left: 128,
-            top: 7,
-            position: "absolute",
-            background: "black",
-            borderRadius: 100,
-            }}
-        />
-        </div>
-        <div
-        className="Frame133"
-        style={{
-            width: 66,
-            padding: 5,
-            left: 35,
-            top: 4,
-            position: "absolute",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 10,
-            display: "inline-flex",
-        }}
-        >
-        <div
-            className="Component5"
-            style={{ width: 56, height: 51, position: "relative" }}
-        >
-            <div
-            className="SolidCommunicationComment"
-            style={{
-                width: 32,
-                height: 32,
-                left: 13,
-                top: 0,
-                position: "absolute",
-            }}
-            >
-            <div
-                className="Icon"
-                style={{
-                width: 22.74,
-                height: 22.07,
-                left: 4.6,
-                top: 5.33,
-                position: "absolute",
-                background: "black",
-                }}
-            ></div>
-            </div>
-            <div
-            className="Messages"
-            style={{
-                left: 0,
-                top: 37,
-                position: "absolute",
-                color: "black",
-                fontSize: 12,
-                fontFamily: "Roboto",
-                fontWeight: "400",
-                wordWrap: "break-word",
-            }}
-            >
-            Messages
-            </div>
-        </div>
-        </div>
-        <div
-        className="Frame134"
-        style={{
-            width: 59,
-            padding: 5,
-            left: 171,
-            top: 4,
-            position: "absolute",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 10,
-            display: "inline-flex",
-        }}
-        >
-        <div
-            className="Component6"
-            style={{ width: 49, height: 51, position: "relative" }}
-        >
-            <div
-            className="SolidStatusBookOpen"
-            style={{
-                width: 32,
-                height: 32,
-                left: 9,
-                top: 0,
-                position: "absolute",
-            }}
-            >
-            <div
-                className="Icon"
-                style={{
-                width: 28,
-                height: 25.33,
-                left: 2,
-                top: 3.5,
-                position: "absolute",
-                background: "black",
-                }}
-            ></div>
-            </div>
-            <div
-            className="Contacts"
-            style={{
-                left: 0,
-                top: 37,
-                position: "absolute",
-                color: "black",
-                fontSize: 12,
-                fontFamily: "Roboto",
-                fontWeight: "400",
-                wordWrap: "break-word",
-            }}
-            >
-            Contacts
-            </div>
-        </div>
-        </div>
-        <div
-        className="Frame135"
-        style={{
-            width: 45,
-            padding: 5,
-            left: 310,
-            top: 4,
-            position: "absolute",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 10,
-            display: "inline-flex",
-        }}
-        >
-        <div
-            className="Component7"
-            style={{ width: 35, height: 51, position: "relative" }}
-        >
-            <div
-            className="SolidCommunicationUser"
-            style={{
-                width: 32,
-                height: 32,
-                left: 2,
-                top: 0,
-                position: "absolute",
-            }}
-            >
-            <div
-                className="Icon"
-                style={{
-                width: 20.67,
-                height: 21.97,
-                left: 5.67,
-                top: 5,
-                position: "absolute",
-                background: "black",
-                }}
-            ></div>
-            </div>
-            <div
-            className="Profile"
-            style={{
-                left: 0,
-                top: 37,
-                position: "absolute",
-                color: "black",
-                fontSize: 12,
-                fontFamily: "Roboto",
-                fontWeight: "400",
-                wordWrap: "break-word",
-            }}
-            >
-            Profile
-            </div>
-        </div>
-        </div>
-    </div>
+    <NavBar/>
     <div
         className="Frame139"
         style={{
@@ -297,7 +98,7 @@ function TuteeAsk() {
         right: 30,
         top: 161,
         position: "absolute",
-        background: "#EAEAEA",
+        background: "#F6E8Bd",
         borderRadius: 10,
         overflow: "hidden",
         flexDirection: "column",
@@ -347,9 +148,9 @@ function TuteeAsk() {
         background: "#E4E4E4",
         borderRadius: 10,
         overflow: "hidden",
-        border: "1px solid",
         flexDirection: "column",
         justifyContent: "center",
+        backgroundColor: "#E2B11D",
         alignItems: "center",
         gap: 10,
         display: "inline-flex",
