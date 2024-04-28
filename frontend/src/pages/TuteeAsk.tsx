@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TutteeAsk() {
+function TuteeAsk() {
     return (
             <div
     className="TuteeHomePage container"
@@ -373,4 +373,4 @@ function TutteeAsk() {
     )
 }
 
-export default TutteeAsk
+export default TuteeAsk
