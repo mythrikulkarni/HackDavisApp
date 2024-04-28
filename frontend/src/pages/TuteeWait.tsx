@@ -2,9 +2,12 @@ import React from 'react';
 
 function TuteeWait(props: {setScreenId: (screenId: number) => void}) {
   React.useEffect(() => {
-    setTimeout(() => {
+    let timer = setTimeout(() => {
       props.setScreenId(4);
     }, 5000);
+    return () => {
+      clearTimeout(timer);
+    }
   }, [])
   return (
 <div className="TuteeHomePage container" style={{width: 390, height: 844, position: 'relative', background: 'white'}}>
