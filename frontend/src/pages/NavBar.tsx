@@ -10,7 +10,7 @@ function NavBar() {
         left: 0,
         top: 754,
         position: "relative",
-        background: "#EAEAEA",
+        background: "#E2B11D",
     }}
     >
     <div
