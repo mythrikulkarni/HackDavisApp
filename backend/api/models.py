@@ -7,3 +7,4 @@ class Categories(models.Model):
 class User(models.Model):
     user_propel_id = models.CharField(max_length=255)
     user_propel_metadata = models.JSONField(default=dict)
+    user_password = models.CharField(max_length=255, default="")

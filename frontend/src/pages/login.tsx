@@ -1,6 +1,22 @@
 import React from 'react';
+import axios from 'axios';
 
 function Login() {
+  const [emailAddress, setEmailAddress] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const formSubmit = () => {
+    let formData = new FormData();
+    formData.append("step", "4");
+    formData.append("email_address", emailAddress);
+    formData.append("password", password);
+
+    axios.post("http://localhost:8000/api/user_auth/", formData).then((response) => {
+        console.log("Success: " + response.data.access_token);
+        //clearForm();
+    })
+  }
+
   return (
     <div
       className="SignUp container"
@@ -60,8 +76,11 @@ function Login() {
         >
           Buzz In
         </div>
-        <div
+        <input
+          type="text"
           className="Frame91"
+          value={emailAddress}
+          onChange={(e) => setEmailAddress(e.target.value)}
           style={{
             width: 330, 
             height: 48, 
@@ -74,6 +93,7 @@ function Login() {
         />
         <div
           className="Frame96"
+          onClick={() => formSubmit()}
           style={{
             width: 330, 
             height: 47, 
@@ -107,7 +127,10 @@ function Login() {
             Log in
           </div>
         </div>
-        <div
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className="Frame92"
           style={{
             width: 330, 

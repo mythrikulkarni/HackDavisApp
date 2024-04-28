@@ -35,7 +35,7 @@ def user_auth(request):
                 first_name = first_name,
                 last_name = last_name,
                 email = email,
-                email_confirmed = False,
+                email_confirmed = True,
                 send_email_to_confirm_email_address = False,
                 
                 password = password,
@@ -47,7 +47,8 @@ def user_auth(request):
                 print(e)
                 return Response({"is_success": False, "message": "Something went wrong."})
             else:
-                user_obj = User.objects.create(user_propel_id=response["user_id"])
+                user_obj = User.objects.create(user_propel_id=response["user_id"],
+                            user_password=password)
                 user_obj.save()
             return Response({"is_success": True, "message": "success", 
                 "user_id": user_obj.id})
@@ -88,4 +89,17 @@ def user_auth(request):
                 metadata=user_obj.user_propel_metadata
             )
             return Response({"is_success": True, "message": 'Success'})
+        elif step == 4:
+            email_address = request.POST.get("email_address", None)
+            password = request.POST.get("password", None)
+            response = settings.PROPEL_AUTH.fetch_user_metadata_by_email(email_address, include_orgs = True)
+            try:
+                user_obj = User.objects.get(user_propel_id=response["user_id"])
+            except User.DoesNotExist:
+                return Response({"is_success": False, "message": "Something went wrong."})
+            else:
+                if (user_obj.user_password != password):
+                    return Response({"is_success": False, "message": "Something went wrong."})
+            response = settings.PROPEL_AUTH.create_access_token(user_id = response["user_id"], duration_in_minutes = 24*60)
+            return Response({"is_success": True, "message": "Success", "access_token": response["access_token"]})
         return Response({"is_success": False, "message": "Invalid Request"})
