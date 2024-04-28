@@ -19,7 +19,6 @@ def user_auth(request):
 
         return Response({"message": "User data will be returned"})
     elif request.method == 'POST':
-        #This is for post
         step = request.POST.get("step", None)
         step = int(step)
 
@@ -63,16 +62,30 @@ def user_auth(request):
                 user_obj = User.objects.get(id=user_id)
             except User.DoesNotExist:
                 return Response({"is_success": False, "message": "Something went wrong."})
+            user_obj.user_propel_metadata["categories"] = cat_ids
+            user_obj.save()
             settings.PROPEL_AUTH.update_user_metadata(
                 user_id=user_obj.user_propel_id,
-                metadata={
-                    "categories": cat_ids
-                }
+                metadata=user_obj.user_propel_metadata
             )
             return Response({"is_success": True, "message": "Success"})
+        elif step == 3:
+            user_id = request.POST.get("user_id", None)
+            user_id = int(user_id)
+
+            is_tutor = request.POST.get("is_tutor", False)
+            if is_tutor != False:
+                is_tutor = True
+            
+            try:
+                user_obj = User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                return Response({"is_success": False, "message": "Something went wrong."})
+            user_obj.user_propel_metadata["is_default_tutor"] = is_tutor
+            user_obj.save()
+            settings.PROPEL_AUTH.update_user_metadata(
+                user_id=user_obj.user_propel_id,
+                metadata=user_obj.user_propel_metadata
+            )
+            return Response({"is_success": True, "message": 'Success'})
         return Response({"is_success": False, "message": "Invalid Request"})
-
-        
-
-
-

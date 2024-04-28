@@ -11,7 +11,7 @@ interface ICategoryFetch {
     data: ICategoryData[]
 }
 
-function Topics(props: {user_id: number}) {
+function Topics(props: {user_id: number, transitionPage: (screenId: number, userId?: number) => void}) {
     const [categories, setCategories] = React.useState<ICategoryData[]>([]);
     const [selectedCateogires, setSelectedCategories] = React.useState<boolean[]>([]);
 
@@ -58,6 +58,7 @@ function Topics(props: {user_id: number}) {
         axios.post("http://localhost:8000/api/user_auth/", formData).then((response) => {
             console.log("Success");
             clearForm();
+            props.transitionPage(2, undefined);
         })
     }
 

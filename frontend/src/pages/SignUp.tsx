@@ -3,10 +3,11 @@ import React from 'react';
 
 interface IUserAuthStep1Post {
     is_success: boolean,
+    user_id: number,
     message: string
 }
 
-function SignUp () {
+function SignUp (props: {transitionPage: (screenId: number, userId?: number) => void}) {
     const [firstName, setFirstName] = React.useState("");
     const [lastName, setlastName] = React.useState("");
     const [email, setEmail] = React.useState("");
@@ -50,6 +51,7 @@ function SignUp () {
         axios.post("http://localhost:8000/api/user_auth/", formData).then((response) => {
             let data = response.data as IUserAuthStep1Post;
             formClearForm();
+            props.transitionPage(1, data.user_id);
         }).catch((err) => {
             console.log(err);
         });

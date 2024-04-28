@@ -1,6 +1,50 @@
 import React from 'react';
+import axios from 'axios';
 
-function Default() {
+function Default(props: {user_id: number, transitionPage: (screenId: number, userId?: number) => void}) {
+  const [isTutor, setIsTutor] = React.useState(false);
+
+  const toggleIsTutor = () => {
+    setIsTutor((prevIsTutor) => {
+      return !prevIsTutor;
+    })
+  }
+
+  const clearForm = () => {
+    setIsTutor(false);
+  }
+
+  const submitForm = () => {
+    let formData = new FormData();
+    formData.append("step", "3");
+    formData.append("user_id", props.user_id.toString());
+    if (isTutor) {
+      formData.append("is_tutor", "yes");
+    }
+
+    axios.post("http://localhost:8000/api/user_auth/", formData).then((response) => {
+        console.log("Success");
+        clearForm();
+        props.transitionPage(3, undefined);
+    })
+  }
+
+  const getBackgroundColor = (option: string) => {
+    if (option == "tutor") {
+      if (isTutor) {
+        return "#35754f";
+      } else {
+        return "#E4E4E4";
+      }
+    } else {
+      //Tutee
+      if (isTutor) {
+        return "#E4E4E4";
+      } else {
+        return "#35754f";
+      }
+    }
+  }
   return (
     <div
       className="SignUp container"
@@ -46,6 +90,7 @@ function Default() {
 
       <div
         className="Frame96"
+        onClick={() => {submitForm();}}
         style={{
           width: 330,
           height: 47,
@@ -83,6 +128,7 @@ function Default() {
 
       <div
         className="Frame113"
+        onClick={() => {toggleIsTutor();}}
         style={{
           width: 330,
           height: 66,
@@ -99,7 +145,7 @@ function Default() {
           justifyContent: 'flex-start',
           alignItems: 'center',
           display: 'inline-flex',
-          backgroundColor: '#35754f'
+          backgroundColor: getBackgroundColor("tutor")
         }}
       >
         <div
@@ -118,6 +164,7 @@ function Default() {
 
       <div
         className="Frame114"
+        onClick={() => {toggleIsTutor();}}
         style={{
           width: 330,
           height: 66,
@@ -133,7 +180,8 @@ function Default() {
           border: '1px black solid',
           justifyContent: 'flex-start',
           alignItems: 'center',
-          display: 'inline-flex'
+          display: 'inline-flex',
+          backgroundColor: getBackgroundColor("tutee")
         }}
       >
         <div

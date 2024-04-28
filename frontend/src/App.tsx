@@ -2,15 +2,17 @@ import React from 'react';
 import logo from './logo.svg';
 import Login from './pages/login';
 import SignUp from './pages/SignUp';
+import Default from './pages/Default';
 
 import "bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Topics from './pages/Topics';
+import SignUpFlow from './pages/SignUpFlow';
 
 function App() {
   return (
-    <Topics/>
+    <SignUpFlow />
     // <div className="mt-5 px-3 py-4">
     //   <h1 className="h1 display-1">Counter Component</h1>
     //   <h2 className="h1 display-1 mt-5 mb-3">0</h2>
