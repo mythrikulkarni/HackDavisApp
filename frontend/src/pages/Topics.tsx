@@ -1,6 +1,66 @@
+import axios from 'axios';
 import React from 'react';
 
-function Topics() {
+interface ICategoryData {
+    id: number,
+    cat_name: string
+}
+
+interface ICategoryFetch {
+    is_success: boolean,
+    data: ICategoryData[]
+}
+
+function Topics(props: {user_id: number}) {
+    const [categories, setCategories] = React.useState<ICategoryData[]>([]);
+    const [selectedCateogires, setSelectedCategories] = React.useState<boolean[]>([]);
+
+    React.useEffect(() => {
+        axios.get("http://localhost:8000/api/user_auth", {
+            params: {
+                section: "category_fetch"
+            }
+        }).then((response) => {
+            let data = response.data as ICategoryFetch;
+            setCategories(data.data);
+            let selectedCategories: boolean[] = new Array(data.data.length);
+            selectedCategories.fill(false);
+            setSelectedCategories(selectedCategories);
+        })
+    }, [])
+
+    const toggleCategory = (index: number) => {
+        setSelectedCategories((selectedCategories) => {
+            let newSelectedCategories = [...selectedCategories];
+            newSelectedCategories[index] = !newSelectedCategories[index];
+            return newSelectedCategories;
+        })
+    }
+
+    const clearForm = () => {
+        let defaultValue: boolean[] = new Array(categories.length);
+        defaultValue.fill(false);
+        setSelectedCategories(defaultValue);
+    }
+
+    const submitForm = () => {
+        let cat_ids: number[] = [];
+        selectedCateogires.map((value, index) => {
+            if (value == true) {
+                cat_ids.push(categories[index].id);
+            }
+        });
+        let formData = new FormData();
+        formData.append("step", "2");
+        formData.append("user_id", props.user_id.toString());
+        formData.append("cat_ids", JSON.stringify(cat_ids));
+
+        axios.post("http://localhost:8000/api/user_auth/", formData).then((response) => {
+            console.log("Success");
+            clearForm();
+        })
+    }
+
     return (
             <div
     className="SignUp container"
@@ -36,346 +96,50 @@ function Topics() {
     >
         Select all topics of interest
     </div>
-    <div
-        className="Frame100"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 151,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame101"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 195,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame102"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 239,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame103"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 283,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame104"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 327,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame105"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 371,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame106"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 415,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame107"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 459,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame108"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 503,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame109"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 547,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame110"
-        style={{
-        width: 24,
-        height: 24,
-        left: 30,
-        top: 591,
-        position: "absolute",
-        borderRadius: 5,
-        border: "1px black solid"
-        }}
-    />
-    <div
-        className="Frame112"
-        style={{
-        width: 330,
-        height: 34,
-        left: 30,
-        top: 667,
-        position: "absolute",
-        borderRadius: 5,
-        overflow: "hidden",
-        border: "1px black solid"
-        }}
-    >
-        <div
-        className="Group58"
-        style={{ width: 10, height: 10, left: 7, top: 7, position: "absolute" }}
-        >
-        <div
-            className="Vector3"
-            style={{
-            width: 0,
-            height: 10,
-            left: 5,
-            top: 0,
-            position: "absolute",
-            border: "1px black solid"
-            }}
-        />
-        <div
-            className="Vector4"
-            style={{
-            width: 0,
-            height: 10,
-            left: 10,
-            top: 5,
-            position: "absolute",
-            transform: "rotate(90deg)",
-            transformOrigin: "0 0",
-            border: "1px black solid"
-            }}
-        />
-        </div>
-    </div>
-    <div
-        className="Academics"
-        style={{
-        left: 68,
-        top: 152,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Academics
-    </div>
-    <div
-        className="Technology"
-        style={{
-        left: 68,
-        top: 196,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Technology
-    </div>
-    <div
-        className="Health"
-        style={{
-        left: 68,
-        top: 240,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Health
-    </div>
-    <div
-        className="Fitness"
-        style={{
-        left: 68,
-        top: 284,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Fitness
-    </div>
-    <div
-        className="Cooking"
-        style={{
-        left: 68,
-        top: 328,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Cooking
-    </div>
-    <div
-        className="Fashion"
-        style={{
-        left: 68,
-        top: 372,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Fashion
-    </div>
-    <div
-        className="Sports"
-        style={{
-        left: 68,
-        top: 416,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Sports
-    </div>
-    <div
-        className="Business"
-        style={{
-        left: 68,
-        top: 460,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Business 
-    </div>
-    <div
-        className="ArtDesign"
-        style={{
-        left: 68,
-        top: 504,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Art &amp; Design
-    </div>
-    <div
-        className="Gaming"
-        style={{
-        left: 68,
-        top: 548,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Gaming
-    </div>
-    <div
-        className="Finance"
-        style={{
-        left: 68,
-        top: 592,
-        position: "absolute",
-        color: "black",
-        fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: 400,
-        wordWrap: "break-word"
-        }}
-    >
-        Finance
-    </div>
+    
+    {(() => {
+        return categories.map((value, index) => {
+            return (
+                <>
+                    <input
+                        id={"1_" + index}
+                        key={"1_" + index}
+                        type="checkbox"
+                        checked={selectedCateogires[index]}
+                        onChange={() => {toggleCategory(index);}}
+                        className="Frame100"
+                        style={{
+                            width: 24,
+                            height: 24,
+                            left: 30,
+                            top: 151 + (index * 44),
+                            position: "absolute",
+                            borderRadius: 5,
+                            border: "1px black solid"
+                        }}
+                    />
+                    <div
+                        key={"2_" + index}
+                        className={value.cat_name}
+                        style={{
+                            left: 68,
+                            top: 152 + (index * 44),
+                            position: "absolute",
+                            color: "black",
+                            fontSize: 18,
+                            fontFamily: "Inter",
+                            fontWeight: 400,
+                            wordWrap: "break-word"
+                        }}
+                    >
+                        {value.cat_name}
+                    </div>
+                </>
+            )
+        });
+    })()}
+    
+    
     <div
         className="Frame96"
         style={{
@@ -386,7 +150,7 @@ function Topics() {
         paddingTop: 16,
         paddingBottom: 16,
         left: 30,
-        top: 747,
+        top: 162 + (categories.length * 44),
         position: "absolute",
         background: "#E4E4E4",
         borderRadius: 10,
@@ -399,7 +163,7 @@ function Topics() {
         display: "inline-flex"
         }}
     >
-        <div
+        <div onClick={() => {submitForm();}}
         className="Next"
         style={{
             color: "black",
@@ -409,39 +173,9 @@ function Topics() {
             wordWrap: "break-word"
         }}
         >
-        next
+        Next
         </div>
     </div>
-    <div
-        className="AddYourOwn"
-        style={{
-        left: 30,
-        top: 645,
-        position: "absolute",
-        color: "black",
-        fontSize: 14,
-        fontFamily: "Inter",
-        fontWeight: 600,
-        wordWrap: "break-word"
-        }}
-    >
-        Add your own
-    </div>
-    <input
-            type="text" // Change the type to 'text' for a text input
-            className="Frame112" // Keep the className
-            style={{
-                width: 330,
-                height: 34,
-                left: 30,
-                top: 667,
-                position: "absolute",
-                borderRadius: 5,
-                overflow: "hidden",
-                border: "1px black solid"
-            }}
-            placeholder="New Topic" // Add a placeholder attribute
-            />
     </div>
     )
 }

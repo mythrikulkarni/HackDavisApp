@@ -1,6 +1,10 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from api.models import Categories, User
+
+from api.user.serializers import CategoriesSerializer
+
 from django.conf import settings
 import json
 
@@ -8,6 +12,11 @@ import json
 def user_auth(request):
     if request.method == 'GET':
         #This is for get
+        section = request.GET.get("section", None)
+        if section == "category_fetch":
+            q_categories = Categories.objects.all()
+            return Response({"is_success": True, "data": CategoriesSerializer(q_categories, many=True).data})
+
         return Response({"message": "User data will be returned"})
     elif request.method == 'POST':
         #This is for post
@@ -23,7 +32,7 @@ def user_auth(request):
             username = email.split("@")[0]
 
             try:
-                settings.PROPEL_AUTH.create_user(
+                response = settings.PROPEL_AUTH.create_user(
                 first_name = first_name,
                 last_name = last_name,
                 email = email,
@@ -38,10 +47,29 @@ def user_auth(request):
             except Exception as e:
                 print(e)
                 return Response({"is_success": False, "message": "Something went wrong."})
+            else:
+                user_obj = User.objects.create(user_propel_id=response["user_id"])
+                user_obj.save()
+            return Response({"is_success": True, "message": "success", 
+                "user_id": user_obj.id})
+        elif step == 2:
+            user_id = request.POST.get("user_id", None)
+            user_id = int(user_id)
 
+            cat_ids = request.POST.get("cat_ids", None)
+            cat_ids = json.loads(cat_ids)
 
-            return Response({"is_success": True, "message": "success"})
-
+            try:
+                user_obj = User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                return Response({"is_success": False, "message": "Something went wrong."})
+            settings.PROPEL_AUTH.update_user_metadata(
+                user_id=user_obj.user_propel_id,
+                metadata={
+                    "categories": cat_ids
+                }
+            )
+            return Response({"is_success": True, "message": "Success"})
         return Response({"is_success": False, "message": "Invalid Request"})
 
         
