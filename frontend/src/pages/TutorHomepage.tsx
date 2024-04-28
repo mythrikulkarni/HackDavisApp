@@ -1,49 +1,36 @@
 import React from 'react';
 
-function TutorHomepage() {
+function TutorHomepage(props: {setScreenId: (screenId: number) => void}) {
+    React.useEffect(() => {
+        const exampleSocket = new WebSocket("ws://localhost:8000/ws/chat/1/");
+        exampleSocket.onopen = (event) => {
+            exampleSocket.send("Test message");
+        }
+        exampleSocket.onclose = (event) => {
+            console.log("Connection Closed :(");
+        }
+    }, [])
     return (
 <div className="TutorHomePage container" style={{width: 390, height: 844, position: 'relative', background: 'white'}}>
   <div className="Tutor" style={{left: 30, top: 60, position: 'absolute', color: 'black', fontSize: 24, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>Tutor</div>
-  <div className="Frame120" style={{width: 330, height: 184, left: 30, top: 244, position: 'absolute', background: 'rgba(94, 128, 81, 0.20)', borderRadius: 10, overflow: 'hidden'}}>
+  <div className="Frame120" style={{width: 330, height: 184, left: 30, top: 142, position: 'absolute', background: 'rgba(94, 128, 81, 0.20)', borderRadius: 10, overflow: 'hidden'}}>
     <div className="Academics" style={{left: 14, top: 14, position: 'absolute', color: '#151515', fontSize: 12, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Academics</div>
     <div className="WhatMethodologiesAndToolsCanBeEmployedToAddressTheChallengesOfIntegratingDiverseDataSourcesIncludingStructuredAndUnstructuredDataInInterdisciplinaryResearchProjectsAimedAtUnderstandingComplexPhenomenaSuchAsClimateChangeOrUrbanization" style={{width: 300, left: 14, top: 37, position: 'absolute', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word'}}>What methodologies and tools can be employed to address the challenges of integrating diverse data sources, including structured and unstructured data, in interdisciplinary research projects aimed at understanding complex phenomena?</div>
   </div>
-  <div className="Frame128" style={{width: 330, height: 146, left: 30, top: 443, position: 'absolute', background: 'rgba(190, 77, 77, 0.20)', borderRadius: 10, overflow: 'hidden'}}>
+  <div className="Frame128" style={{width: 330, height: 146, left: 30, top: 341, position: 'absolute', background: 'rgba(190, 77, 77, 0.20)', borderRadius: 10, overflow: 'hidden'}}>
     <div className="Technology" style={{left: 14, top: 14, position: 'absolute', color: '#151515', fontSize: 12, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Technology</div>
     <div className="HowCanWeEffectivelyImplementAMultiCloudStrategyWhileEnsuringDataSovereigntyComplianceMinimizingLatencyIssuesAndOptimizingCostsAcrossDiverseGeographicalRegions" style={{width: 300, left: 14, top: 37, position: 'absolute', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word'}}>How can we effectively implement a multi-cloud strategy while ensuring data sovereignty compliance, minimizing latency issues, and optimizing costs?</div>
   </div>
-  <div className="Frame129" style={{width: 330, height: 127, left: 30, top: 604, position: 'absolute', background: 'rgba(75.19, 151.20, 240.44, 0.20)', borderRadius: 10, overflow: 'hidden'}}>
+  <div className="Frame129" style={{width: 330, height: 127, left: 30, top: 502, position: 'absolute', background: 'rgba(75.19, 151.20, 240.44, 0.20)', borderRadius: 10, overflow: 'hidden'}}>
     <div className="Health" style={{left: 14, top: 14, position: 'absolute', color: '#151515', fontSize: 12, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Health</div>
     <div className="HowCanWeBestPersonalizeMedicalTreatmentsOnALargeScaleConsideringChallengesLikeDataSharingPatientPrivacyRegulationsAndFairAccess" style={{width: 300, left: 14, top: 37, position: 'absolute', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word'}}>How can we best personalize medical treatments on a large scale, considering challenges like data sharing, patient privacy, regulations, and fair access?</div>
   </div>
-  <div className="Frame123" style={{paddingLeft: 16, paddingRight: 16, paddingTop: 8, paddingBottom: 8, left: 30, top: 148, position: 'absolute', background: '#5E8051', borderRadius: 20, justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-    <div className="Academics" style={{color: '#F5F5F5', fontSize: 14, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Academics</div>
-  </div>
-  <div className="Frame124" style={{paddingLeft: 16, paddingRight: 16, paddingTop: 8, paddingBottom: 8, left: 145, top: 148, position: 'absolute', background: '#BE4D4D', borderRadius: 20, justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-    <div className="Technology" style={{color: '#F5F5F5', fontSize: 14, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Technology</div>
-  </div>
-  <div className="Frame125" style={{paddingLeft: 16, paddingRight: 16, paddingTop: 8, paddingBottom: 8, left: 264, top: 148, position: 'absolute', background: '#E78429', borderRadius: 20, justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-    <div className="Music" style={{color: '#F5F5F5', fontSize: 14, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Music</div>
-  </div>
-  <div className="Frame126" style={{paddingLeft: 16, paddingRight: 16, paddingTop: 8, paddingBottom: 8, left: 30, top: 191, position: 'absolute', background: '#4B97F0', borderRadius: 20, justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-    <div className="Health" style={{color: '#F5F5F5', fontSize: 14, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Health</div>
-  </div>
-  <div className="Frame127" style={{width: 89, paddingLeft: 10, paddingRight: 10, paddingTop: 2, paddingBottom: 2, left: 30, top: 110, position: 'absolute', borderRadius: 6, overflow: 'hidden', border: '1px #C2C2C2 solid', justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-    <div className="Filter" style={{color: '#515151', fontSize: 14, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Filter</div>
-    <div className="SolidInterfaceMenu" style={{width: 24, height: 24, position: 'relative'}}>
-    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M13.75 5.75C13.75 5.33579 13.4142 5 13 5H3.5C3.08579 5 2.75 5.33579 2.75 5.75C2.75 6.16421 3.08579 6.5 3.5 6.5H13C13.4142 6.5 13.75 6.16421 13.75 5.75Z" fill="#515151"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M16 0.75C16 0.335786 15.6642 0 15.25 0H1.25C0.835786 0 0.5 0.335786 0.5 0.75C0.5 1.16421 0.835786 1.5 1.25 1.5H15.25C15.6642 1.5 16 1.16421 16 0.75Z" fill="#515151"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 10.75C11.5 10.3358 11.1642 10 10.75 10H5.25C4.83579 10 4.5 10.3358 4.5 10.75C4.5 11.1642 4.83579 11.5 5.25 11.5H10.75C11.1642 11.5 11.5 11.1642 11.5 10.75Z" fill="#515151"/>
-</svg>
-    </div>
-  </div>
-  <div className="Frame130" style={{width: 64, height: 29, left: 103, top: 60, position: 'absolute', borderRadius: 20, border: '1px #C2C2C2 solid'}} />
+  <div className="Frame130" style={{width: 64, height: 29, left: 103, top: 60, position: 'absolute', borderRadius: 20, border: '1px #C2C2C2 solid'}}
+    onClick={() => props.setScreenId(1)} />
   <div className="Ellipse19" style={{width: 19, height: 19, left: 108, top: 65, position: 'absolute', background: '#3679DF', borderRadius: 9999}} />
   <div className="Ellipse20" style={{width: 19, height: 19, left: 143, top: 65, position: 'absolute', borderRadius: 9999, border: '1px #C2C2C2 solid'}} />
   <div className="BotNav" style={{width: 390, height: 90, left: 0, top: 754, position: 'absolute', background: '#EAEAEA'}}>
     <div className="HomeIndicator" style={{width: 390, height: 20, left: 0, top: 70, position: 'absolute'}}>
-      <div className="HomeIndicator" style={{width: 134, height: 5, left: 128, top: 7, position: 'absolute', background: 'black', borderRadius: 100}} />
     </div>
     <div className="Frame133" style={{width: 66, padding: 5, left: 35, top: 4, position: 'absolute', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
       <div className="Component5" style={{width: 56, height: 51, position: 'relative'}}>

@@ -4,7 +4,7 @@ import SignUp from "./SignUp";
 import Topics from "./Topics";
 import Default from "./Default";
 
-function SignUpFlow() {
+function SignUpFlow(props: {transitionOutPage: (screenId: number, access_key?: string) => void}){
     const [screenId, setScreenId] = React.useState(0);
     const [userId, setUserId] = React.useState(-1);
 
@@ -16,11 +16,12 @@ function SignUpFlow() {
     }
 
     if (screenId == 0) {
-        return <SignUp transitionPage={transitionPage} />
+        return <SignUp transitionPage={transitionPage} transitionOutPage={props.transitionOutPage} />
     } else if (screenId == 1) {
         return <Topics user_id={userId} transitionPage={transitionPage} />
     } else if (screenId == 2) {
-        return <Default user_id={userId} transitionPage={transitionPage} />
+        return <Default user_id={userId} transitionPage={transitionPage}
+            transitionOutPage={props.transitionOutPage} />
     } else {
         return <div>Finished Sign Up</div>
     }

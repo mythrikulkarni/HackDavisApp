@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from api.models import Categories, User
+from api.models import Categories, User, Question
 
 from api.user.serializers import CategoriesSerializer
 
@@ -88,7 +88,9 @@ def user_auth(request):
                 user_id=user_obj.user_propel_id,
                 metadata=user_obj.user_propel_metadata
             )
-            return Response({"is_success": True, "message": 'Success'})
+            response = settings.PROPEL_AUTH.create_access_token(user_id = user_obj.user_propel_id, 
+                    duration_in_minutes = 24*60)
+            return Response({"is_success": True, "message": 'Success', "access_token": response["access_token"]})
         elif step == 4:
             email_address = request.POST.get("email_address", None)
             password = request.POST.get("password", None)
@@ -103,3 +105,37 @@ def user_auth(request):
             response = settings.PROPEL_AUTH.create_access_token(user_id = response["user_id"], duration_in_minutes = 24*60)
             return Response({"is_success": True, "message": "Success", "access_token": response["access_token"]})
         return Response({"is_success": False, "message": "Invalid Request"})
+    
+@api_view(['GET', 'POST'])
+def user_config(request):
+    if request.method == 'GET':
+        access_token = request.GET.get("access_token", None)
+        auth_header = "Bearer " + access_token
+        try:
+            user = settings.PROPEL_AUTH.validate_access_token_and_get_user(auth_header)
+        except UnauthorizedException:
+            return Response({"is_success": False, "message": "Something went wrong."})
+        if user.properties["metadata"]["is_default_tutor"]:
+            return Response({"is_success": True, "type": "tutor"})
+        else:
+            return Response({"is_success": True, "type": "tutee"})
+        
+@api_view(['GET', 'POST'])
+def user_question(request):
+    if request.method == 'POST':
+        
+
+        access_token = request.POST.get("access_token", None)
+        auth_header = "Bearer " + access_token
+        try:
+            user = settings.PROPEL_AUTH.validate_access_token_and_get_user(auth_header)
+        except UnauthorizedException:
+            return Response({"is_success": False, "message": "Something went wrong."})
+        
+        step = request.POST.get("step", None)
+        step = int(step)
+        if step == 1:
+            question = request.POST.get("question", None)
+            question_obj = Question.objects.create(user_propel_id=user.user_id, question=question)
+            question_obj.save()
+            return Response({"is_success": True, "question_id": question_obj.id})

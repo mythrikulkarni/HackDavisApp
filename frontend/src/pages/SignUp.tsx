@@ -7,7 +7,9 @@ interface IUserAuthStep1Post {
     message: string
 }
 
-function SignUp (props: {transitionPage: (screenId: number, userId?: number) => void}) {
+function SignUp (props: {transitionPage: (screenId: number, userId?: number) => void,
+    transitionOutPage: (screenId: number, access_token?: string) => void
+}) {
     const [firstName, setFirstName] = React.useState("");
     const [lastName, setlastName] = React.useState("");
     const [email, setEmail] = React.useState("");
@@ -273,6 +275,7 @@ function SignUp (props: {transitionPage: (screenId: number, userId?: number) => 
         Already have an account?{" "}
         </span>
         <span
+        onClick={() => props.transitionOutPage(0, undefined)}
         style={{
             color: '#4E4E4E', fontSize: 12, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word', cursor: "pointer"
         }}

@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-function Default(props: {user_id: number, transitionPage: (screenId: number, userId?: number) => void}) {
+function Default(props: {user_id: number, transitionPage: (screenId: number, userId?: number) => void,
+        transitionOutPage: (screenId: number, access_token?: string) => void
+}) {
   const [isTutor, setIsTutor] = React.useState(false);
 
   const toggleIsTutor = () => {
@@ -25,7 +27,7 @@ function Default(props: {user_id: number, transitionPage: (screenId: number, use
     axios.post("http://localhost:8000/api/user_auth/", formData).then((response) => {
         console.log("Success");
         clearForm();
-        props.transitionPage(3, undefined);
+        props.transitionOutPage(1, response.data.access_token as string);
     })
   }
 

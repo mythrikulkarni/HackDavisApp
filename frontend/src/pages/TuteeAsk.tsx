@@ -1,7 +1,21 @@
+import axios from 'axios';
 import React from 'react';
 import NavBar from './NavBar';
 
-function TuteeAsk() {
+function TuteeAsk(props: {setScreenId: (screenId: number) => void, access_token: string,
+        setQuestionId: (questionId: number) => void
+}) {
+    const [question, setQuestion] = React.useState("");
+    const formSubmit = () => {
+        let formData = new FormData();
+        formData.append("access_token", props.access_token);
+        formData.append("step", "1");
+        formData.append("question", question);
+        axios.post("http://localhost:8000/api/user_question/", formData).then((response) => {
+            props.setQuestionId(response.data.question_id);
+            props.setScreenId(2);
+        })
+    }
     return (
             <div
     className="TuteeHomePage "
@@ -38,6 +52,7 @@ function TuteeAsk() {
         >
         <div
             className="Frame130"
+            onClick={() => {props.setScreenId(0); console.log("click")}}
             style={{
             width: 64,
             height: 29,
@@ -89,8 +104,11 @@ function TuteeAsk() {
     >
         Ask a question
     </div>
-    <div
+    <input
+        type="textarea"
         className="Frame141"
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
         style={{
         height: 344,
         padding: 15,
@@ -107,34 +125,10 @@ function TuteeAsk() {
         gap: 276,
         display: "inline-flex",
         }}
-    >
-        <div
-        className="AskHere"
-        style={{
-            color: "#858585",
-            fontSize: 16,
-            fontFamily: "Inter",
-            fontWeight: "500",
-            wordWrap: "break-word",
-        }}
-        >
-        ask here ...
-        </div>
-        <div
-        className="200"
-        style={{
-            color: "#858585",
-            fontSize: 16,
-            fontFamily: "Inter",
-            fontWeight: "500",
-            wordWrap: "break-word",
-        }}
-        >
-        0/200
-        </div>
-    </div>
+    />
     <div
         className="Frame96"
+        onClick={() => formSubmit()}
         style={{
         width: 330,
         height: 47,

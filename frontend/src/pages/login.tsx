@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { isPropertySignature } from 'typescript';
 
-function Login() {
+function Login(props: {transitionScreen: (screenId: number, access_token?: string) => void}) {
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -13,6 +14,7 @@ function Login() {
 
     axios.post("http://localhost:8000/api/user_auth/", formData).then((response) => {
         console.log("Success: " + response.data.access_token);
+        props.transitionScreen(1, response.data.access_token);
         //clearForm();
     })
   }
@@ -200,6 +202,7 @@ function Login() {
             Need an account? 
           </span>
           <span
+            onClick={() => props.transitionScreen(2)}
             style={{
               color: '#4E4E4E', fontSize: 12, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'
             }}
